@@ -48,3 +48,29 @@ public class App {
 ## Conclusión
 El patrón Factory Method permite crear objetos de manera flexible y desacoplar la lógica de instanciación del código cliente. En este caso, `PizzeriaCF` maneja la creación de diferentes tipos de `Pizza`, simplificando el código en `App` y facilitando la ampliación del sistema con nuevas pizzas sin modificar la lógica principal.
 
+------
+
+#### Uso de `super()`
+
+El `super()` en `PizzaOrillaRellena` llama al constructor de la clase padre (`Pizza`). Es decir, cuando creas una instancia de `PizzaOrillaRellena`, primero se ejecuta el constructor de `PizzaOrillaRellena`, pero antes de ejecutar su propio código, `super(cantidadRebanadas, especialidad);` invoca el constructor de `Pizza` con esos parámetros.
+
+##### ¿Por qué se usa `super()`?
+- Para inicializar correctamente los atributos heredados de `Pizza`.
+- Asegura que cualquier lógica del constructor de `Pizza` se ejecute antes de personalizar la subclase.
+
+Si `Pizza` tiene un constructor como este:
+
+```java
+public class Pizza {
+    protected int cantidadRebanadas;
+    protected String especialidad;
+
+    public Pizza(int cantidadRebanadas, String especialidad) {
+        this.cantidadRebanadas = cantidadRebanadas;
+        this.especialidad = especialidad;
+    }
+}
+```
+
+Entonces `PizzaOrillaRellena` hereda esa estructura, evitando repetir código innecesario.
+
